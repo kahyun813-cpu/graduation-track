@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import Header from './components/Header'
 import Grid from './components/Grid'
 import Chart from './components/Chart'
+import StatsDashboard from './components/StatsDashboard'
 import CourseModal from './components/modals/CourseModal'
 import CategoryModal from './components/modals/CategoryModal'
 import SemesterModal from './components/modals/SemesterModal'
@@ -123,6 +124,28 @@ export default function App() {
 
   const totalEarnedCredits = useMemo(() => calcEarnedCredits(courses), [courses])
   const overallGPA = useMemo(() => calcGPA(courses, gradeSystem), [courses, gradeSystem])
+
+  const majorGPA = useMemo(() => {
+    const majorCategoryIds = categories
+      .filter((c) => c.tag === '본전공' || c.tag === '제2전공')
+      .map((c) => c.id)
+    const majorCourses = courses.filter((c) => majorCategoryIds.includes(c.categoryId))
+    return calcGPA(majorCourses, gradeSystem)
+  }, [categories, courses, gradeSystem])
+
+  const radarData = useMemo(() => {
+    return types.map((type) => {
+      const catsForType = categories.filter((cat) => cat.typeId === type.id)
+      if (catsForType.length === 0) return null
+
+      const totalRequired = catsForType.reduce((sum, cat) => sum + (cat.requiredCredits || 0), 0)
+      if (totalRequired === 0) return null
+
+      const totalEarned = catsForType.reduce((sum, cat) => sum + (earnedByCategory[cat.id] || 0), 0)
+      const progress = Math.min(100, (totalEarned / totalRequired) * 100)
+      return { subject: type.name, progress, fullMark: 100 }
+    }).filter(Boolean)
+  }, [types, categories, earnedByCategory])
 
   const upsertCourse = (course) => {
     setCourses((prev) => {
@@ -286,7 +309,18 @@ export default function App() {
         onEditCourse={(c) => setEditingCourse(c)}
       />
 
-      <Chart chartData={chartData} types={types} gradeSystem={gradeSystem} />
+      <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 mt-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="p-4 sm:p-6 rounded-lg" style={{ background: 'var(--cream-deep)' }}>
+          <Chart chartData={chartData} types={types} gradeSystem={gradeSystem} />
+        </div>
+        <StatsDashboard
+          totalEarnedCredits={totalEarnedCredits}
+          totalCreditsGoal={totalCreditsGoal}
+          overallGPA={overallGPA}
+          majorGPA={majorGPA}
+          radarData={radarData}
+        />
+      </div>
 
       {editingCourse && (
         <CourseModal
