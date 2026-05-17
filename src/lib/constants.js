@@ -5,8 +5,6 @@ import { translations } from './i18n'
 // -----------------------------------------------------------------------------
 export const GRADE_SYSTEMS = {
   'plus-zero': {
-    label: '4.5 만점 · A+ / A0 / B+ / B0',
-    shortLabel: '4.5 만점',
     maxGPA: 4.5,
     grades: {
       'A+': 4.5, 'A0': 4.0, 'B+': 3.5, 'B0': 3.0,
@@ -17,8 +15,6 @@ export const GRADE_SYSTEMS = {
     ],
   },
   'plus-zero-minus': {
-    label: '4.3 만점 · A+ / A0 / A- / B+ / B0 / B-',
-    shortLabel: '4.3 만점',
     maxGPA: 4.3,
     grades: {
       'A+': 4.3, 'A0': 4.0, 'A-': 3.7, 'B+': 3.3, 'B0': 3.0, 'B-': 2.7,
@@ -71,14 +67,14 @@ export function getDefaultTypes(lang = 'ko') {
 export function getDefaultSemesters(lang = 'ko') {
   const t = translations[lang] || translations.ko
   return [
-    { id: uid(), label: t.semLabel(1, 'regular', 1), year: 1, term: 1, type: 'regular' },
-    { id: uid(), label: t.semLabel(1, 'regular', 2), year: 1, term: 2, type: 'regular' },
-    { id: uid(), label: t.semLabel(2, 'regular', 1), year: 2, term: 1, type: 'regular' },
-    { id: uid(), label: t.semLabel(2, 'regular', 2), year: 2, term: 2, type: 'regular' },
-    { id: uid(), label: t.semLabel(3, 'regular', 1), year: 3, term: 1, type: 'regular' },
-    { id: uid(), label: t.semLabel(3, 'regular', 2), year: 3, term: 2, type: 'regular' },
-    { id: uid(), label: t.semLabel(4, 'regular', 1), year: 4, term: 1, type: 'regular' },
-    { id: uid(), label: t.semLabel(4, 'regular', 2), year: 4, term: 2, type: 'regular' },
+    { id: uid(), year: 1, term: 1, type: 'regular' },
+    { id: uid(), year: 1, term: 2, type: 'regular' },
+    { id: uid(), year: 2, term: 1, type: 'regular' },
+    { id: uid(), year: 2, term: 2, type: 'regular' },
+    { id: uid(), year: 3, term: 1, type: 'regular' },
+    { id: uid(), year: 3, term: 2, type: 'regular' },
+    { id: uid(), year: 4, term: 1, type: 'regular' },
+    { id: uid(), year: 4, term: 2, type: 'regular' },
   ]
 }
 

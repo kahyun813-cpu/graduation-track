@@ -28,12 +28,9 @@ export default function StatsDashboard({
         <div className="p-4 sm:p-6 rounded-lg space-y-6" style={{ background: 'var(--tan-light)' }}>
             <div>
                 <div className="flex justify-between items-center mb-1">
-                    {/* 🚨 [수정 완료] t.settingsTitle(X) 대신 언어 상태에 따라 정확한 제목이 나오도록 변경했습니다! */}
-                    <h2 className="text-lg font-bold" style={{ color: 'var(--ink)' }}>
-                        {lang === 'ko' ? '졸업요건 취득현황' : 'Graduation Status'}
-                    </h2>
+                    <h2 className="text-lg font-bold" style={{ color: 'var(--ink)' }}>{t.dashboardTitle}</h2>
                     <span className="text-sm font-medium" style={{ color: 'var(--ink)' }}>
-                        {`${totalEarnedCredits} / ${totalCreditsGoal} ${lang === 'ko' ? '학점' : 'cr'}`}
+                        {t.creditsShort(totalEarnedCredits, totalCreditsGoal)}
                     </span>
                 </div>
                 <div className="w-full h-3 rounded-full" style={{ background: 'var(--cream-deep)' }}>
@@ -53,13 +50,11 @@ export default function StatsDashboard({
 
             <div className="grid grid-cols-2 gap-4">
                 <StatCard label={t.overallGPA} value={formatGPA(overallGPA)} />
-                <StatCard label={lang === 'ko' ? '전공 평점' : 'Major GPA'} value={formatGPA(majorGPA)} />
+                <StatCard label={t.majorGPALabel} value={formatGPA(majorGPA)} />
             </div>
 
             <div>
-                <h3 className="text-center font-semibold mb-2" style={{ color: 'var(--ink)' }}>
-                    {lang === 'ko' ? '분야별 이수 현황' : 'Progress by Category'}
-                </h3>
+                <h3 className="text-center font-semibold mb-2" style={{ color: 'var(--ink)' }}>{t.radarChartTitle}</h3>
                 <div style={{ height: '250px' }}>
                     <ResponsiveContainer width="100%" height="100%">
                         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>

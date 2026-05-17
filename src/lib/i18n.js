@@ -10,6 +10,12 @@ export const translations = {
     settings: '설정',
     langToggle: 'EN',
 
+    // 대시보드
+    dashboardTitle: '졸업요건 취득현황',
+    majorGPALabel: '전공 평점',
+    radarChartTitle: '분야별 이수 현황',
+    creditsUnit: '학점',
+
     addSemesterTitle: '학기 추가',
     deleteSemesterTitle: '학기 삭제',
     addCategoryTitle: '카테고리 추가',
@@ -127,6 +133,12 @@ export const translations = {
     settings: 'Settings',
     langToggle: '한',
 
+    // Dashboard
+    dashboardTitle: 'Graduation Status',
+    majorGPALabel: 'Major GPA',
+    radarChartTitle: 'Progress by Category',
+    creditsUnit: 'cr',
+
     addSemesterTitle: 'Add Semester',
     deleteSemesterTitle: 'Remove Semester',
     addCategoryTitle: 'Add Category',
@@ -226,12 +238,12 @@ export const translations = {
 
     defaultTypes: [
       { name: 'Major', color: '#1E40AF' },
-      { name: 'Liberal Arts', color: '#5B6B23' },
+      { name: 'Electives', color: '#5B6B23' },
     ],
     defaultCategories: [
       { name: 'Major Required', requiredCredits: 21, tag: 'Major', typeName: 'Major' },
       { name: 'Major Elective', requiredCredits: 15, tag: 'Major', typeName: 'Major' },
-      { name: 'Electives', requiredCredits: 30, tag: null, typeName: 'Liberal Arts' },
+      { name: 'Electives', requiredCredits: 30, tag: null, typeName: 'Electives' },
     ],
   },
 }

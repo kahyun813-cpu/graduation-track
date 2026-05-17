@@ -40,13 +40,3 @@ export function calcEarnedCredits(courses) {
   }
   return total
 }
-
-// -----------------------------------------------------------------------------
-// 학기 라벨 자동 생성 (🚨 이 함수가 누락되었던 것입니다!)
-// -----------------------------------------------------------------------------
-export function makeSemesterLabel(year, type, term) {
-  if (type === 'regular') return `${year}학년 ${term}학기`
-  if (type === 'summer') return `${year}학년 여름계절`
-  if (type === 'winter') return `${year}학년 겨울계절`
-  return ''
-}
