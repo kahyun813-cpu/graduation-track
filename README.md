@@ -32,9 +32,6 @@ A web application that helps you manage your courses, credits, and GPA by semest
 
 
 
-| 메인 화면 | 설정 모달 |
-| :---: | :---: |
-| ![메인 그리드 화면](https://via.placeholder.com/400x300.png?text=Main+Grid+UI) | ![설정 모달 화면](https://via.placeholder.com/400x300.png?text=Settings+Modal) |
 
 ## 기술 스택 (Tech Stack)
 
