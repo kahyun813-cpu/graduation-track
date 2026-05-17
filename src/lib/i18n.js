@@ -2,13 +2,35 @@ import { createContext, useContext } from 'react'
 
 export const translations = {
   ko: {
-    appTitle: '졸업요건 트래커',
+    appTitle: '졸업하게해주세요',
     appSubtitle: '학기별 과목 · 학점 · 평점 한눈에',
     loading: '불러오는 중…',
     totalCredits: '총 학점',
     overallGPA: '전체 평점',
     settings: '설정',
     langToggle: 'EN',
+
+    // 사용법
+    helpIconTitle: '사용법 안내',
+    helpTitle: '사용법 안내',
+    helpSteps: [
+      {
+        title: '1. 카테고리 설정하기',
+        content: '좌측의 카테고리(예: 전공필수, 교양)를 수정하거나 추가하여 자신만의 졸업요건을 만드세요. "필요 학점"을 입력하면 진행률이 표시됩니다.'
+      },
+      {
+        title: '2. 과목 추가하기',
+        content: '각 학기/카테고리에 맞는 칸의 [+] 버튼을 눌러 이수한 (또는 이수할) 과목을 추가하세요. 과목명, 학점, 성적을 입력할 수 있습니다.'
+      },
+      {
+        title: '3. 데이터 분석하기',
+        content: '과목을 추가하면 하단의 대시보드와 그래프가 자동으로 업데이트됩니다. 전체 평점, 전공 평점, 분야별 이수 현황을 한눈에 파악하세요.'
+      },
+      {
+        title: '4. 데이터 저장 및 내보내기',
+        content: '모든 데이터는 브라우저에 자동으로 저장됩니다. 다른 기기에서 사용하려면 우측 상단 [설정] 메뉴에서 데이터를 내보내고 불러올 수 있습니다.'
+      }
+    ],
 
     // 대시보드
     dashboardTitle: '졸업요건 취득현황',
@@ -132,6 +154,28 @@ export const translations = {
     overallGPA: 'Overall GPA',
     settings: 'Settings',
     langToggle: '한',
+
+    // User Guide
+    helpIconTitle: 'User Guide',
+    helpTitle: 'User Guide',
+    helpSteps: [
+      {
+        title: '1. Set Up Categories',
+        content: 'Edit or add categories on the left (e.g., Major Required, Electives) to create your own graduation plan. Enter "Required Credits" to track your progress.'
+      },
+      {
+        title: '2. Add Courses',
+        content: 'Click the [+] button in the corresponding semester/category cell to add courses you have taken (or plan to take). You can enter the course name, credits, and grade.'
+      },
+      {
+        title: '3. Analyze Your Data',
+        content: 'As you add courses, the dashboard and charts at the bottom will update automatically. Get a clear view of your overall GPA, major GPA, and completion status by area.'
+      },
+      {
+        title: '4. Save & Export Data',
+        content: 'All data is automatically saved in your browser. To use it on another device, you can export and import your data from the [Settings] menu in the top right.'
+      }
+    ],
 
     // Dashboard
     dashboardTitle: 'Graduation Status',
