@@ -1,3 +1,8 @@
+import { translations } from './i18n'
+
+// -----------------------------------------------------------------------------
+// 성적 체계 (App에서 현재 언어 설정을 읽어와 동적으로 라벨을 띄울 수 있도록 유지합니다)
+// -----------------------------------------------------------------------------
 export const GRADE_SYSTEMS = {
   'plus-zero': {
     label: '4.5 만점 · A+ / A0 / B+ / B0',
@@ -33,11 +38,16 @@ export const GRADE_COLORS = {
   'F': '#7F1D1D', 'P': '#1E3A8A', 'NP': '#6B7280',
 }
 
+// 태그 디자인 색상
 export const TAG_COLORS = {
   '본전공': { bg: '#8B2A2A', text: '#FFF8E7' },
+  'Major': { bg: '#8B2A2A', text: '#FFF8E7' },
   '제2전공': { bg: '#8B2A2A', text: '#FFF8E7' },
+  'Double Major': { bg: '#8B2A2A', text: '#FFF8E7' },
   '부전공': { bg: '#6B4423', text: '#FFF8E7' },
+  'Minor': { bg: '#6B4423', text: '#FFF8E7' },
   '연계전공': { bg: '#5B6B23', text: '#FFF8E7' },
+  'Interdisciplinary': { bg: '#5B6B23', text: '#FFF8E7' },
 }
 
 export const TYPE_COLOR_PALETTE = [
@@ -47,34 +57,41 @@ export const TYPE_COLOR_PALETTE = [
 
 export const uid = () => Math.random().toString(36).slice(2, 10)
 
-export function getDefaultTypes() {
+// -----------------------------------------------------------------------------
+// 🚨 언어(lang)를 주입받아 i18n에 선언된 기본 텍스트 세트로 생성하는 다국어 함수들
+// -----------------------------------------------------------------------------
+export function getDefaultTypes(lang = 'ko') {
+  const t = translations[lang] || translations.ko
   return [
-    { id: uid(), name: '학문의 기초', color: '#8B6F3F' },
-    { id: uid(), name: '전공', color: '#1E40AF' },
-    { id: uid(), name: '교양', color: '#5B6B23' },
+    { id: uid(), name: t.defaultTypes[0].name, color: t.defaultTypes[0].color },
+    { id: uid(), name: t.defaultTypes[1].name, color: t.defaultTypes[1].color },
+    { id: uid(), name: t.defaultTypes[2].name, color: t.defaultTypes[2].color },
   ]
 }
 
-export function getDefaultSemesters() {
+export function getDefaultSemesters(lang = 'ko') {
+  const t = translations[lang] || translations.ko
   return [
-    { id: uid(), label: '1학년 1학기', year: 1, term: 1, type: 'regular' },
-    { id: uid(), label: '1학년 2학기', year: 1, term: 2, type: 'regular' },
-    { id: uid(), label: '2학년 1학기', year: 2, term: 1, type: 'regular' },
-    { id: uid(), label: '2학년 2학기', year: 2, term: 2, type: 'regular' },
-    { id: uid(), label: '3학년 1학기', year: 3, term: 1, type: 'regular' },
-    { id: uid(), label: '3학년 2학기', year: 3, term: 2, type: 'regular' },
-    { id: uid(), label: '4학년 1학기', year: 4, term: 1, type: 'regular' },
-    { id: uid(), label: '4학년 2학기', year: 4, term: 2, type: 'regular' },
+    { id: uid(), label: t.semLabel(1, 'regular', 1), year: 1, term: 1, type: 'regular' },
+    { id: uid(), label: t.semLabel(1, 'regular', 2), year: 1, term: 2, type: 'regular' },
+    { id: uid(), label: t.semLabel(2, 'regular', 1), year: 2, term: 1, type: 'regular' },
+    { id: uid(), label: t.semLabel(2, 'regular', 2), year: 2, term: 2, type: 'regular' },
+    { id: uid(), label: t.semLabel(3, 'regular', 1), year: 3, term: 1, type: 'regular' },
+    { id: uid(), label: t.semLabel(3, 'regular', 2), year: 3, term: 2, type: 'regular' },
+    { id: uid(), label: t.semLabel(4, 'regular', 1), year: 4, term: 1, type: 'regular' },
+    { id: uid(), label: t.semLabel(4, 'regular', 2), year: 4, term: 2, type: 'regular' },
   ]
 }
 
-export function getDefaultCategories(types) {
-  const find = (n) => types.find((t) => t.name === n)?.id || null
+export function getDefaultCategories(types, lang = 'ko') {
+  const t = translations[lang] || translations.ko
+  const findId = (index) => types[index]?.id || null
+
   return [
-    { id: uid(), name: '학문의 기초', requiredCredits: 9, tag: null, typeId: find('학문의 기초') },
-    { id: uid(), name: '전공', requiredCredits: 36, tag: '본전공', typeId: find('전공') },
-    { id: uid(), name: '일반 교양', requiredCredits: 33, tag: null, typeId: find('교양') },
-    { id: uid(), name: '교양 선택', requiredCredits: 10, tag: null, typeId: find('교양') },
+    { id: uid(), name: t.defaultCategories[0].name, requiredCredits: 9, tag: null, typeId: findId(0) },
+    { id: uid(), name: t.defaultCategories[1].name, requiredCredits: 36, tag: lang === 'ko' ? '본전공' : 'Major', typeId: findId(1) },
+    { id: uid(), name: t.defaultCategories[2].name, requiredCredits: 33, tag: null, typeId: findId(2) },
+    { id: uid(), name: t.defaultCategories[3].name, requiredCredits: 10, tag: null, typeId: findId(2) },
   ]
 }
 
