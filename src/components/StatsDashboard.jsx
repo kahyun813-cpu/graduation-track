@@ -1,5 +1,8 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
+// 🚨 다국어 라이브러리 Hook
+import { useLang } from '../lib/i18n';
+
 const StatCard = ({ label, value }) => (
     <div className="p-4 rounded-lg text-center" style={{ background: 'var(--cream-deep)' }}>
         <div className="text-sm" style={{ color: 'var(--ink-soft)' }}>{label}</div>
@@ -16,6 +19,8 @@ export default function StatsDashboard({
     majorGPA,
     radarData,
 }) {
+    const { lang, t } = useLang();
+
     const graduationProgress = totalCreditsGoal > 0 ? (totalEarnedCredits / totalCreditsGoal) * 100 : 0;
     const formatGPA = (gpa) => gpa ? gpa.toFixed(2) : 'N/A';
 
@@ -23,8 +28,13 @@ export default function StatsDashboard({
         <div className="p-4 sm:p-6 rounded-lg space-y-6" style={{ background: 'var(--tan-light)' }}>
             <div>
                 <div className="flex justify-between items-center mb-1">
-                    <h2 className="text-lg font-bold" style={{ color: 'var(--ink)' }}>졸업요건 취득현황</h2>
-                    <span className="text-sm font-medium" style={{ color: 'var(--ink)' }}>{`${totalEarnedCredits} / ${totalCreditsGoal} 학점`}</span>
+                    {/* 🚨 [수정 완료] t.settingsTitle(X) 대신 언어 상태에 따라 정확한 제목이 나오도록 변경했습니다! */}
+                    <h2 className="text-lg font-bold" style={{ color: 'var(--ink)' }}>
+                        {lang === 'ko' ? '졸업요건 취득현황' : 'Graduation Status'}
+                    </h2>
+                    <span className="text-sm font-medium" style={{ color: 'var(--ink)' }}>
+                        {`${totalEarnedCredits} / ${totalCreditsGoal} ${lang === 'ko' ? '학점' : 'cr'}`}
+                    </span>
                 </div>
                 <div className="w-full h-3 rounded-full" style={{ background: 'var(--cream-deep)' }}>
                     <div
@@ -42,12 +52,14 @@ export default function StatsDashboard({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-                <StatCard label="전체 평점" value={formatGPA(overallGPA)} />
-                <StatCard label="전공 평점" value={formatGPA(majorGPA)} />
+                <StatCard label={t.overallGPA} value={formatGPA(overallGPA)} />
+                <StatCard label={lang === 'ko' ? '전공 평점' : 'Major GPA'} value={formatGPA(majorGPA)} />
             </div>
 
             <div>
-                <h3 className="text-center font-semibold mb-2" style={{ color: 'var(--ink)' }}>분야별 이수 현황</h3>
+                <h3 className="text-center font-semibold mb-2" style={{ color: 'var(--ink)' }}>
+                    {lang === 'ko' ? '분야별 이수 현황' : 'Progress by Category'}
+                </h3>
                 <div style={{ height: '250px' }}>
                     <ResponsiveContainer width="100%" height="100%">
                         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
