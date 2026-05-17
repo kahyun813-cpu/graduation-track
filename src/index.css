@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --cream: #F7EFD8;
-  --cream-deep: #F0E5C6;
-  --tan: #D4BD8A;
-  --tan-light: #DCC89A;
-  --tan-dark: #B8A170;
-  --maroon: #8B2A2A;
-  --maroon-deep: #6B1F1F;
-  --ink: #3A2E1F;
-  --ink-soft: #5B4A33;
+  --cream: #ffffff; /* Main background */
+  --cream-deep: #f5f5f5; /* Secondary background */
+  --tan: #eeeeee; /* Element background */
+  --tan-light: #e0e0e0; /* Hover background */
+  --tan-dark: #bdbdbd; /* Border */
+  --maroon: #000000; /* Accent */
+  --maroon-deep: #212121; /* Deep accent */
+  --ink: #212121; /* Main text */
+  --ink-soft: #757575; /* Soft text */
 }
 
 * { box-sizing: border-box; }

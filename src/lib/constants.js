@@ -40,19 +40,19 @@ export const GRADE_COLORS = {
 
 // 태그 디자인 색상
 export const TAG_COLORS = {
-  '본전공': { bg: '#8B2A2A', text: '#FFF8E7' },
-  'Major': { bg: '#8B2A2A', text: '#FFF8E7' },
-  '제2전공': { bg: '#8B2A2A', text: '#FFF8E7' },
-  'Double Major': { bg: '#8B2A2A', text: '#FFF8E7' },
-  '부전공': { bg: '#6B4423', text: '#FFF8E7' },
-  'Minor': { bg: '#6B4423', text: '#FFF8E7' },
-  '연계전공': { bg: '#5B6B23', text: '#FFF8E7' },
-  'Interdisciplinary': { bg: '#5B6B23', text: '#FFF8E7' },
+  '본전공': { bg: '#212121', text: '#ffffff' },
+  'Major': { bg: '#212121', text: '#ffffff' },
+  '제2전공': { bg: '#212121', text: '#ffffff' },
+  'Double Major': { bg: '#212121', text: '#ffffff' },
+  '부전공': { bg: '#616161', text: '#ffffff' },
+  'Minor': { bg: '#616161', text: '#ffffff' },
+  '연계전공': { bg: '#757575', text: '#ffffff' },
+  'Interdisciplinary': { bg: '#757575', text: '#ffffff' },
 }
 
 export const TYPE_COLOR_PALETTE = [
-  '#8B2A2A', '#8B6F3F', '#1E40AF', '#5B6B23', '#0F766E', '#6D28D9',
-  '#BE185D', '#C2410C', '#B45309', '#0369A1', '#15803D', '#374151',
+  '#212121', '#424242', '#616161', '#757575', '#9e9e9e', '#0d47a1',
+  '#1b5e20', '#e65100', '#b71c1c', '#4a148c', '#006064', '#374151',
 ]
 
 export const uid = () => Math.random().toString(36).slice(2, 10)
