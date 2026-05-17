@@ -108,15 +108,13 @@ export const translations = {
     },
 
     defaultTypes: [
-      { name: '학문의 기초', color: '#8B6F3F' },
       { name: '전공', color: '#1E40AF' },
       { name: '교양', color: '#5B6B23' },
     ],
     defaultCategories: [
-      { name: '학문의 기초', requiredCredits: 9, tag: null, typeName: '학문의 기초' },
-      { name: '전공', requiredCredits: 36, tag: '본전공', typeName: '전공' },
-      { name: '일반 교양', requiredCredits: 33, tag: null, typeName: '교양' },
-      { name: '교양 선택', requiredCredits: 10, tag: null, typeName: '교양' },
+      { name: '전공필수', requiredCredits: 21, tag: '본전공', typeName: '전공' },
+      { name: '전공선택', requiredCredits: 15, tag: '본전공', typeName: '전공' },
+      { name: '교양', requiredCredits: 30, tag: null, typeName: '교양' },
     ],
   },
 
@@ -227,15 +225,13 @@ export const translations = {
     },
 
     defaultTypes: [
-      { name: 'Core Academics', color: '#8B6F3F' },
       { name: 'Major', color: '#1E40AF' },
       { name: 'Liberal Arts', color: '#5B6B23' },
     ],
     defaultCategories: [
-      { name: 'Core Academics', requiredCredits: 9, tag: null, typeName: 'Core Academics' },
-      { name: 'Major Requirements', requiredCredits: 36, tag: 'Major', typeName: 'Major' },
-      { name: 'General Liberal Arts', requiredCredits: 33, tag: null, typeName: 'Liberal Arts' },
-      { name: 'Liberal Arts Electives', requiredCredits: 10, tag: null, typeName: 'Liberal Arts' },
+      { name: 'Major Required', requiredCredits: 21, tag: 'Major', typeName: 'Major' },
+      { name: 'Major Elective', requiredCredits: 15, tag: 'Major', typeName: 'Major' },
+      { name: 'Electives', requiredCredits: 30, tag: null, typeName: 'Liberal Arts' },
     ],
   },
 }

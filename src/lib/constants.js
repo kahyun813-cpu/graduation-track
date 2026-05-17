@@ -61,12 +61,11 @@ export const uid = () => Math.random().toString(36).slice(2, 10)
 // 🚨 언어(lang)를 주입받아 i18n에 선언된 기본 텍스트 세트로 생성하는 다국어 함수들
 // -----------------------------------------------------------------------------
 export function getDefaultTypes(lang = 'ko') {
-  const t = translations[lang] || translations.ko
-  return [
-    { id: uid(), name: t.defaultTypes[0].name, color: t.defaultTypes[0].color },
-    { id: uid(), name: t.defaultTypes[1].name, color: t.defaultTypes[1].color },
-    { id: uid(), name: t.defaultTypes[2].name, color: t.defaultTypes[2].color },
-  ]
+  const t = translations[lang] || translations.ko;
+  return t.defaultTypes.map(type => ({
+    id: uid(),
+    ...type
+  }));
 }
 
 export function getDefaultSemesters(lang = 'ko') {
@@ -85,14 +84,15 @@ export function getDefaultSemesters(lang = 'ko') {
 
 export function getDefaultCategories(types, lang = 'ko') {
   const t = translations[lang] || translations.ko
-  const findId = (index) => types[index]?.id || null
+  const findTypeId = (typeName) => types.find(type => type.name === typeName)?.id || null
 
-  return [
-    { id: uid(), name: t.defaultCategories[0].name, requiredCredits: 9, tag: null, typeId: findId(0) },
-    { id: uid(), name: t.defaultCategories[1].name, requiredCredits: 36, tag: lang === 'ko' ? '본전공' : 'Major', typeId: findId(1) },
-    { id: uid(), name: t.defaultCategories[2].name, requiredCredits: 33, tag: null, typeId: findId(2) },
-    { id: uid(), name: t.defaultCategories[3].name, requiredCredits: 10, tag: null, typeId: findId(2) },
-  ]
+  return t.defaultCategories.map(cat => ({
+    id: uid(),
+    name: cat.name,
+    requiredCredits: cat.requiredCredits,
+    tag: cat.tag,
+    typeId: findTypeId(cat.typeName),
+  }));
 }
 
 export const TAG_PRESETS = ['', '본전공', '제2전공', '부전공', '연계전공']
