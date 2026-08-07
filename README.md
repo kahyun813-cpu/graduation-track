@@ -26,9 +26,11 @@ A web application that helps you manage your courses, credits, and GPA by semest
 
 ## 스크린샷 (Screenshots)
 
-![alt text](image.png)
+<img width="1279" height="619" alt="image" src="https://github.com/user-attachments/assets/d610dd68-1fd9-4d9d-b487-4efde69b067b" />
 
-![alt text](image-1.png)
+
+<img width="1278" height="673" alt="image" src="https://github.com/user-attachments/assets/e4bcf6ab-ccbe-488e-b0fe-da90af1cfe22" />
+
 
 
 
